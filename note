@@ -10,6 +10,8 @@ what actions can user take
 
 what content the state must store
 -track the step,
+-add 1 after next step button is pressed
+
 -track the information of all pages
 
 validation message
