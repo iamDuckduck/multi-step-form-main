@@ -1,0 +1,37 @@
+where we start?
+
+-make use of namespace
+-build the view first
+
+what actions can user take
+-page 1
+-input infomation
+-press next button
+
+what content the state must store
+-track the step,
+-track the information of all pages
+
+validation message
+
+- A field has been missed
+- The email address is not formatted correctly
+
+(not page 2)
+
+- A step is submitted, but no selection has been made
+
+MVC
+-app
+-control flow of view and state logic
+-initialize application
+
+-store
+-get state
+-save state
+-emit state change event
+
+-view
+-add event listeners
+-handles ui-only events
+-manipulate the DOM

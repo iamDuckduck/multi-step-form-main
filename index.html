@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Frontend Mentor | Multi-step form</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- Sidebar start -->
+      <div class="Sidebar">
+        <div class="steps" data-id="step-list">
+          <div class="step-1">
+            <p class="number step-color">1</p>
+            <p class="step">Step 1</p>
+            <p class="info">Your info</p>
+          </div>
+
+          <div class="step-2">
+            <p class="number">2</p>
+            <p class="step">Step 2</p>
+            <p class="info">Select plan</p>
+          </div>
+
+          <div class="step-3">
+            <p class="number">3</p>
+            <p class="step">Step 3</p>
+            <p class="info">Add-ons</p>
+          </div>
+
+          <div class="step-4">
+            <p class="number">4</p>
+            <p class="step">Step 4</p>
+            <p class="info">Summary</p>
+          </div>
+        </div>
+      </div>
+      <!-- Sidebar end -->
+
+      <!-- Step 1 start -->
+      <div class="step-1-page page-wrapper">
+        <div class="main-page flex-page">
+          <div class="top-container">
+            <div class="title">
+              <div class="header">Personal info</div>
+              <div class="sub-info">
+                Please provide your name, email address, and phone number.
+              </div>
+            </div>
+            <div class="user-info-page-1">
+              <div class="row">
+                <label for="fname">Name</label>
+                <p class="error-input hidden">This field is required.</p>
+                <input
+                  type="text"
+                  placeholder="e.g. Stephen King"
+                  data-id="name"
+                />
+              </div>
+              <div class="row">
+                <label for="fname">Email Address</label>
+                <p class="error-input hidden">This field is required.</p>
+                <input
+                  type="text"
+                  placeholder="e.g. stephenking@lorem.com"
+                  data-id="email"
+                />
+              </div>
+              <div class="row">
+                <label for="fname">Phone Number</label>
+                <p class="error-input hidden">This field is required.</p>
+                <input
+                  type="text"
+                  placeholder="e.g. +1 234 567 890"
+                  data-id="phone"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="bottom-bar">
+            <button data-id="next-step">Next Step</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 1 end -->
+      <div class="step-2-page page-wrapper hidden">
+        <div class="main-page flex-page">
+          <div class="top-container">
+            <div class="title">
+              <div class="header">Select your plan</div>
+              <div class="sub-info">
+                You have the option of monthly or yearly billing.
+              </div>
+            </div>
+            <div class="user-info-page-2">
+              <div class="grid-container">
+                <button class="grid-item">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="40"
+                    height="40"
+                    viewBox="0 0 40 40"
+                  >
+                    <g fill="none" fill-rule="evenodd">
+                      <circle cx="20" cy="20" r="20" fill="#FFAF7E" />
+                      <path
+                        fill="#FFF"
+                        fill-rule="nonzero"
+                        d="M24.995 18.005h-3.998v5.998h-2v-5.998H15a1 1 0 0 0-1 1V29a1 1 0 0 0 1 1h9.995a1 1 0 0 0 1-1v-9.995a1 1 0 0 0-1-1Zm-5.997 8.996h-2v-1.999h2v2Zm2-11.175a2.999 2.999 0 1 0-2 0v2.18h2v-2.18Z"
+                      />
+                    </g>
+                  </svg>
+                  <p>Arcade</p>
+                  <p>$9/mo</p>
+                </button>
+                <div class="grid-item">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="40"
+                    height="40"
+                    viewBox="0 0 40 40"
+                  >
+                    <g fill="none" fill-rule="evenodd">
+                      <circle cx="20" cy="20" r="20" fill="#FFAF7E" />
+                      <path
+                        fill="#FFF"
+                        fill-rule="nonzero"
+                        d="M24.995 18.005h-3.998v5.998h-2v-5.998H15a1 1 0 0 0-1 1V29a1 1 0 0 0 1 1h9.995a1 1 0 0 0 1-1v-9.995a1 1 0 0 0-1-1Zm-5.997 8.996h-2v-1.999h2v2Zm2-11.175a2.999 2.999 0 1 0-2 0v2.18h2v-2.18Z"
+                      />
+                    </g>
+                  </svg>
+                  <p>Advanced</p>
+                  <p>$12/mo</p>
+                </div>
+                <div class="grid-item">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="40"
+                    height="40"
+                    viewBox="0 0 40 40"
+                  >
+                    <g fill="none" fill-rule="evenodd">
+                      <circle cx="20" cy="20" r="20" fill="#FFAF7E" />
+                      <path
+                        fill="#FFF"
+                        fill-rule="nonzero"
+                        d="M24.995 18.005h-3.998v5.998h-2v-5.998H15a1 1 0 0 0-1 1V29a1 1 0 0 0 1 1h9.995a1 1 0 0 0 1-1v-9.995a1 1 0 0 0-1-1Zm-5.997 8.996h-2v-1.999h2v2Zm2-11.175a2.999 2.999 0 1 0-2 0v2.18h2v-2.18Z"
+                      />
+                    </g>
+                  </svg>
+                  <p>Pro</p>
+                  <p>$15/mo</p>
+                </div>
+              </div>
+              <div class="plan-choice">Monthly [button] Yearly</div>
+            </div>
+          </div>
+          <div class="bottom-bar-2">
+            <button data-id="back-step">Go Back</button>
+            <button data-id="next-step">Next Step</button>
+          </div>
+        </div>
+      </div>
+      <!-- Step 2 end -->
+
+      <!-- Step 3 start -->
+      <div class="step-3-page page-wrapper hidden">
+        <div class="main-page flex-page">
+          <div class="top-container">
+            <div class="title">
+              <div class="header">Pick add-ons</div>
+              <div class="sub-info">
+                Add-ons help enhance your gaming experience.
+              </div>
+            </div>
+            <div class="user-info-page-3">
+              <div class="grid-container">
+                <div class="grid-item">
+                  <label class="switch">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                  <p>Online service</p>
+                  <p>Access to multiplayer games</p>
+                  <p class="price">+$2/mo</p>
+                </div>
+                <div class="grid-item">
+                  <label class="switch">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                  <p>Online service</p>
+                  <p>Access to multiplayer games</p>
+                  <p class="price">+$2/mo</p>
+                </div>
+                <div class="grid-item">
+                  <label class="switch">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                  <p>Online service</p>
+                  <p>Access to multiplayer games</p>
+                  <p class="price">+$2/mo</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bottom-bar-2">
+            <button data-id="back-step">Go Back</button>
+            <button data-id="next-step">Next Step</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pick add-ons Add-ons help enhance your gaming experience. Online service
+      Access to multiplayer games +$1/mo Larger storage Extra 1TB of cloud save
+      +$2/mo Customizable Profile Custom theme on your profile +$2/mo Go Back
+      Next Step -->
+
+      <!-- Step 3 end -->
+
+      <!-- Step 4 start -->
+
+      <div class="step-4-page page-wrapper hidden">
+        <div class="main-page flex-page">
+          <div class="top-container">
+            <div class="title">
+              <div class="header">Finishing up</div>
+              <div class="sub-info">
+                Double-check everything looks OK before confirming.
+              </div>
+            </div>
+            <div class="user-info-page-4">
+              <div class="payment-detail">
+                <div class="top-grip-container">
+                  <p class="plan">Arcade (monthly)</p>
+                  <p class="change-plan">Change</p>
+                  <p class="plan-price">$9/mo</p>
+                </div>
+                <div class="bottom-grip-container">
+                  <p class="service-choice">Online service</p>
+                  <p class="service-price">+$2/mo</p>
+                  <p class="storage-choice">Larger storage</p>
+                  <p class="storage-price">+$2/mo</p>
+                </div>
+              </div>
+              <div class="total-spend">
+                <p>Total (per month)</p>
+                <p>+$12/mo</p>
+              </div>
+            </div>
+          </div>
+          <div class="bottom-bar-2">
+            <button data-id="back-step">Go Back</button>
+            <button>Confirm</button>
+          </div>
+        </div>
+      </div>
+      <!-- Finishing up Double-check everything looks OK before confirming. -->
+
+      <!-- Dynamically add subscription and add-on selections here -->
+
+      <!-- Total (per month/year) Go Back Confirm -->
+
+      <!-- Step 4 end -->
+
+      <!-- Step 5 start -->
+
+      <div class="step-5-page page-wrapper hidden">
+        <div class="main-page flex-page">
+          <div class="top-container">
+            <div class="icon">123123</div>
+            <div class="title">
+              <div class="header">Thank you!</div>
+              <div class="sub-info">
+                Thanks for confirming your subscription! We hope you have fun
+                using our platform. If you ever need support, please feel free
+                to email us at support@loremgaming.com.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thank you! Thanks for confirming your subscription! We hope you have fun
+    using our platform. If you ever need support, please feel free to email us
+    at support@loremgaming.com. -->
+
+      <!-- Step 5 end -->
+    </div>
+
+    <!-- <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+    <script src="js/app.js" type="module"></script>
+  </body>
+</html>
