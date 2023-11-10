@@ -9,19 +9,16 @@ what actions can user take
 -press next button
 
 what content the state must store
--track the step,
+-track the step
 -add 1 after next step button is pressed
-
--track the information of all pages
+-duration
+-user choice
 
 validation message
 
 - A field has been missed
 - The email address is not formatted correctly
-
-(not page 2)
-
-- A step is submitted, but no selection has been made
+- plan not selected
 
 MVC
 -app

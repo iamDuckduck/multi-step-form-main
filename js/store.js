@@ -1,20 +1,33 @@
 const initialState = {
   steps: 1, // current page
+  Duration: "Month",
   user_info: [],
 };
 
 export default class Store {
   #state = initialState;
 
-  constructor() {}
+  constructor(template) {
+    this.template = template;
+  }
 
-  // get current page
+  // get current page //
   get page() {
-    const state = this.#getState();
     return this.#getState().steps;
   }
 
-  // add 1 and get the page
+  // getter method ( change current duration before return ) //
+  get Duration() {
+    const state = this.#getState();
+    const stateClone = structuredClone(state);
+
+    stateClone.Duration = stateClone.Duration == "Month" ? "Year" : "Month";
+    this.#saveState(stateClone);
+
+    return this.#getState().Duration;
+  }
+
+  // add 1 and get the page //
   get nextPage() {
     const state = this.#getState();
 
@@ -26,7 +39,7 @@ export default class Store {
     return this.#getState().steps;
   }
 
-  // minus 1 and get the page
+  // minus 1 and get the page //
   get backPage() {
     const state = this.#getState();
 
@@ -38,7 +51,7 @@ export default class Store {
     return this.#getState().steps;
   }
 
-  // change state when form is filled and vaild
+  // change state when form is filled and vaild //
   formFilled(info) {
     const state = this.#getState();
     const stateClone = structuredClone(state);
@@ -53,6 +66,7 @@ export default class Store {
     console.log(stateClone);
   }
 
+  // common method for saving and getting state //
   #saveState(stateOrFn) {
     const prevState = this.#getState();
 

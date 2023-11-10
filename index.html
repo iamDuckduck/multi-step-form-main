@@ -100,7 +100,7 @@
             </div>
           </div>
           <div class="bottom-bar">
-            <button data-id="next-step">Next Step</button>
+            <button class="next-button" data-id="next-step">Next Step</button>
           </div>
         </div>
       </div>
@@ -117,7 +117,7 @@
             </div>
             <div class="user-info-page-2">
               <div class="grid-container">
-                <button class="grid-item">
+                <div class="grid-item" data-id="Arcade">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="40"
@@ -134,9 +134,10 @@
                     </g>
                   </svg>
                   <p>Arcade</p>
-                  <p>$9/mo</p>
-                </button>
-                <div class="grid-item">
+                  <p class="price">$9/mo</p>
+                  <p class="yearly_benefit hidden">2 month-free</p>
+                </div>
+                <div class="grid-item" data-id="Advanced">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="40"
@@ -153,9 +154,10 @@
                     </g>
                   </svg>
                   <p>Advanced</p>
-                  <p>$12/mo</p>
+                  <p class="price">$12/mo</p>
+                  <p class="yearly_benefit hidden">2 month-free</p>
                 </div>
-                <div class="grid-item">
+                <div class="grid-item" data-id="Pro">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="40"
@@ -172,15 +174,24 @@
                     </g>
                   </svg>
                   <p>Pro</p>
-                  <p>$15/mo</p>
+                  <p class="price">$15/mo</p>
+                  <p class="yearly_benefit hidden">2 month-free</p>
                 </div>
               </div>
-              <div class="plan-choice">Monthly [button] Yearly</div>
+              <div class="plan-choice">
+                <div class="month selected">Monthly</div>
+                <div class="toggle-wrapper">
+                  <input type="checkbox" id="switch" />
+                  <label for="switch"></label>
+                </div>
+                <div class="year not-selected">yearly</div>
+              </div>
             </div>
           </div>
+          <div class="no-plan-selected hidden">no plan selected</div>
           <div class="bottom-bar-2">
-            <button data-id="back-step">Go Back</button>
-            <button data-id="next-step">Next Step</button>
+            <button class="back-button" data-id="back-step">Go Back</button>
+            <button class="next-button" data-id="next-step">Next Step</button>
           </div>
         </div>
       </div>
@@ -198,31 +209,31 @@
             </div>
             <div class="user-info-page-3">
               <div class="grid-container">
-                <div class="grid-item">
+                <div class="grid-item" data-id="Online service">
                   <label class="switch">
                     <input type="checkbox" />
                     <span class="slider"></span>
                   </label>
                   <p>Online service</p>
                   <p>Access to multiplayer games</p>
+                  <p class="price">+$1/mo</p>
+                </div>
+                <div class="grid-item" data-id="Larger storage">
+                  <label class="switch">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                  <p>Larger storage</p>
+                  <p>Extra 1TB of cloud save</p>
                   <p class="price">+$2/mo</p>
                 </div>
-                <div class="grid-item">
+                <div class="grid-item" data-id="Customizable Profile">
                   <label class="switch">
                     <input type="checkbox" />
                     <span class="slider"></span>
                   </label>
-                  <p>Online service</p>
-                  <p>Access to multiplayer games</p>
-                  <p class="price">+$2/mo</p>
-                </div>
-                <div class="grid-item">
-                  <label class="switch">
-                    <input type="checkbox" />
-                    <span class="slider"></span>
-                  </label>
-                  <p>Online service</p>
-                  <p>Access to multiplayer games</p>
+                  <p>Customizable Profile</p>
+                  <p>Custom theme on your profile</p>
                   <p class="price">+$2/mo</p>
                 </div>
               </div>
