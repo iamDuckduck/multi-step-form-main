@@ -27,6 +27,18 @@ export default class Store {
     return this.#getState().Duration;
   }
 
+  // get user_info only at page 4
+  get user_info() {
+    if (this.#getState().steps == 4) {
+      return {
+        Duration: this.#getState().Duration,
+        Plan: this.#getState().user_info[1].Plan,
+        adsOn: this.#getState().user_info[2],
+      };
+    }
+    return;
+  }
+
   // add 1 and get the page //
   get nextPage() {
     const state = this.#getState();

@@ -8,6 +8,9 @@ export default class View {
     this.$.monthText = this.#qs(".month");
     this.$.yearText = this.#qs(".year");
     this.$.noPlanSelected = this.#qs(".no-plan-selected");
+    this.$.planChoice = this.#qs('[data-id="plan-choice"]');
+    this.$.planPrice = this.#qs('[data-id="plan-price"]');
+    this.$.adsOnDiv = this.#qs(".bottom-grip-container");
 
     this.$$.inputList = this.#qsAll(".row input");
     this.$$.stepNumberList = this.#qsAll(".number");
@@ -82,18 +85,41 @@ export default class View {
   }
 
   // render the page view
-  renderPage(nextPage, priceInfo) {
+  renderPage(nextPage, user_info, template) {
     this.$$.pageList.forEach((page) => {
       page.classList.add("hidden");
     });
 
     const pageEl = document.querySelector(`.step-${nextPage}-page`);
     pageEl.classList.remove("hidden");
+
+    if (nextPage == 4) {
+      const duration = user_info.Duration;
+      const plan = user_info.Plan;
+      const adsOn = user_info.adsOn;
+
+      const priceIndex = template.plan_price.Name.indexOf(plan);
+      const planPrice = template.plan_price[duration][priceIndex];
+
+      this.$.planChoice.textContent = `${plan} (${duration})`;
+      this.$.planPrice.textContent = `${planPrice}`;
+
+      this.$.adsOnDiv.innerHTML = "";
+      for (let i = 0; i < adsOn.length; i++) {
+        const childName = document.createElement("p");
+        const childPrice = document.createElement("p");
+        childName.innerText = `${adsOn[i]}`;
+        this.$.adsOnDiv.appendChild(childName);
+
+        const adsOnPriceIndex = template.extra.Name.indexOf(adsOn[i]);
+        childPrice.innerText = template.extra[duration][adsOnPriceIndex];
+        this.$.adsOnDiv.appendChild(childPrice);
+      }
+    }
   }
 
   // render the price
   renderPrice(template, Duration) {
-    console.log(Duration);
     // for clicked logic
     this.$.monthText.classList.toggle("selected");
     this.$.monthText.classList.toggle("not-selected");
@@ -216,10 +242,11 @@ export default class View {
   }
 
   #page3Info(info) {
+    info = [];
     this.$$.page3_Div.forEach((El) => {
       if (El.classList.contains("clicked")) {
-        const key = El.getAttribute("data-id");
-        info[key] = El.getAttribute("data-id");
+        const value = El.getAttribute("data-id");
+        info.push(El.getAttribute("data-id"));
       }
     });
 

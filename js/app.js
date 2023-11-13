@@ -33,18 +33,16 @@ function init() {
     // process to next page
     const currentPage = store.nextPage;
     view.renderStep(currentPage);
-    view.renderPage(currentPage);
+    view.renderPage(currentPage, store.user_info, store.template);
   });
 
   view.bindBackButton((event) => {
-    // store state and get currentPage
     const currentPage = store.backPage;
     view.renderStep(currentPage);
     view.renderPage(currentPage);
   });
 
   view.bindPlanChoiceSwitch((event) => {
-    console.log("hi");
     view.renderPrice(store.template, store.Duration);
   });
 }
