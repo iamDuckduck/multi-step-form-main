@@ -212,6 +212,20 @@ body {
   background-color: hsl(0, 0%, 100%);
 }
 
+.page2_plan {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: hsl(213, 96%, 18%);
+}
+
+.page2_price {
+  color: hsl(231, 11%, 63%);
+}
+
+.yearly_benefit {
+  color: hsl(213, 96%, 18%);
+}
+
 .grid-container .grid-item:hover {
   cursor: pointer;
   transform: scale(1.01);
@@ -293,6 +307,11 @@ body {
   cursor: pointer;
 }
 
+.no-plan-selected {
+  color: red;
+  text-align: center;
+}
+
 /* page 2 style end */
 
 .user-info-page-3 .grid-container {
@@ -315,19 +334,30 @@ body {
   justify-self: center;
 }
 
-.user-info-page-3 .grid-container .grid-item .price {
+.page3_price {
   grid-column-start: 3;
   grid-column-end: 3;
   grid-row: 1 / span 2;
   align-self: center;
   justify-self: center;
   padding-right: 5px;
+  color: hsl(243, 100%, 62%);
+}
+
+.add-ons {
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: hsl(213, 96%, 18%);
+}
+
+.add-ons-details {
+  color: hsl(231, 11%, 63%);
 }
 
 /* page 3 style end */
 
 .payment-detail {
-  background-color: grey;
+  background-color: hsl(229, 24%, 87%);
 }
 
 .top-grip-container {
@@ -336,26 +366,24 @@ body {
   grid-template-columns: 1fr 0.2fr;
   grid-row-gap: 3px;
   padding: 25px;
+  color: hsl(213, 96%, 18%);
+  font-weight: 600;
 }
 
-.top-grip-container .plan {
-  grid-column-start: 1;
-  grid-column-end: 1;
-  grid-row-start: 1;
-  grid-row-end: 1;
-}
-
-.top-grip-container .change-plan {
-  grid-column-start: 1;
-  grid-column-end: 1;
-  grid-row-start: 2;
-  grid-row-end: 2;
+.page-4-price {
+  text-align: right;
 }
 
 .top-grip-container .plan-price {
-  grid-column-start: 2;
-  grid-column-end: 2;
-  justify-self: end;
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  align-self: center;
+}
+
+.top-grip-container .plan-change {
+  font-weight: 400;
+  color: hsl(231, 11%, 63%);
+  text-decoration: underline;
 }
 
 .bottom-grip-container {
@@ -366,16 +394,56 @@ body {
   padding: 25px;
 }
 
-.bottom-grip-container .storage-price,
-.bottom-grip-container .service-price {
-  justify-self: end;
+.bottom-grip-container .add-ons-name {
+  color: hsl(231, 11%, 63%);
+}
+
+.bottom-grip-container .add-ons-price {
+  color: hsl(213, 96%, 18%);
+}
+
+hr {
+  margin: 0px 25px;
+  border: 1px solid hsl(231, 11%, 63%);
 }
 
 .total-spend {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 0.2fr;
   padding: 25px;
 }
 
+.total-title {
+  color: hsl(231, 11%, 63%);
+}
+
+.total-price {
+  color: hsl(243, 100%, 62%);
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
 /* page 4 style end */
+
+/* page 5 style start */
+.step-5-page .flex-page {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 25px;
+}
+
+.step-5-page .header {
+  color: hsl(243, 100%, 62%);
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 20px 0px 15px 0px;
+}
+
+.step-5-page .sub-info {
+  color: hsl(231, 11%, 63%);
+}
 
 @media screen and (max-width: 375px) {
   /* Styles for screens up to 375pxpx wide */
@@ -415,10 +483,9 @@ body {
     display: none;
   }
 
-  .title {
-    padding-bottom: 10px;
+  .header {
+    padding-top: 15px;
   }
-
   /* sidebar style end */
 
   .page-wrapper {
@@ -429,16 +496,18 @@ body {
     height: 100%;
     width: 100%;
     justify-content: flex-end;
+    position: relative;
   }
 
   .top-container {
     background-color: hsl(0, 0%, 100%);
     width: auto;
     position: absolute;
-    top: 80px;
+    top: -80px;
     margin: 15px;
-    padding: 15px;
+    padding: 20px;
     border-radius: 8px;
+    width: 325px;
   }
 
   .bottom-bar {
@@ -448,6 +517,10 @@ body {
 
   /* all page style end */
 
+  .title .sub-info {
+    font-size: 1.1rem;
+  }
+
   .grid-container {
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr;
@@ -456,7 +529,7 @@ body {
 
   .grid-container .grid-item {
     height: auto;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 0.2fr 1fr;
     grid-gap: 5px;
   }
@@ -467,6 +540,13 @@ body {
     grid-row: 1 / span 2;
     align-self: center;
     justify-self: center;
+  }
+
+  .yearly_benefit {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 3;
   }
 
   .bottom-bar-2 {
@@ -485,4 +565,9 @@ body {
   }
 
   /* page 3 style end */
+
+  /* page 5 style */
+  .step-5-page .flex-page {
+    background-color: white;
+  }
 }

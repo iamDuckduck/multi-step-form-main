@@ -11,6 +11,8 @@ export default class View {
     this.$.planChoice = this.#qs('[data-id="plan-choice"]');
     this.$.planPrice = this.#qs('[data-id="plan-price"]');
     this.$.adsOnDiv = this.#qs(".bottom-grip-container");
+    this.$.totalTitile = this.#qs(".total-title");
+    this.$.totalPrice = this.#qs(".total-price");
 
     this.$$.inputList = this.#qsAll(".row input");
     this.$$.stepNumberList = this.#qsAll(".number");
@@ -23,8 +25,8 @@ export default class View {
     this.$$.page3_Div = this.#qsAll(
       ".user-info-page-3 .grid-container .grid-item"
     );
-    this.$$.page2_Price = document.querySelectorAll(".user-info-page-2 .price");
-    this.$$.page3_Price = document.querySelectorAll(".user-info-page-3 .price");
+    this.$$.page2_Price = this.#qsAll(".page2_price");
+    this.$$.page3_Price = this.#qsAll(".page3_price");
     this.$$.yearlyBenefit = this.#qsAll(".yearly_benefit");
 
     // -----UI-only event listeners -----//
@@ -76,6 +78,7 @@ export default class View {
 
   // render the slide bar view
   renderStep(nextPage) {
+    if (nextPage == 5) return;
     this.$$.stepNumberList.forEach((element) => {
       element.classList.remove("step-color");
     });
@@ -85,15 +88,15 @@ export default class View {
   }
 
   // render the page view
-  renderPage(nextPage, user_info, template) {
+  renderPage(page, user_info, template) {
     this.$$.pageList.forEach((page) => {
       page.classList.add("hidden");
     });
 
-    const pageEl = document.querySelector(`.step-${nextPage}-page`);
+    const pageEl = document.querySelector(`.step-${page}-page`);
     pageEl.classList.remove("hidden");
 
-    if (nextPage == 4) {
+    if (page == 4) {
       const duration = user_info.Duration;
       const plan = user_info.Plan;
       const adsOn = user_info.adsOn;
@@ -104,16 +107,31 @@ export default class View {
       this.$.planChoice.textContent = `${plan} (${duration})`;
       this.$.planPrice.textContent = `${planPrice}`;
 
+      let totalPrice = Number(planPrice.match(/\d+/)[0]);
       this.$.adsOnDiv.innerHTML = "";
       for (let i = 0; i < adsOn.length; i++) {
         const childName = document.createElement("p");
         const childPrice = document.createElement("p");
         childName.innerText = `${adsOn[i]}`;
+        childName.classList.add("add-ons-name");
         this.$.adsOnDiv.appendChild(childName);
 
         const adsOnPriceIndex = template.extra.Name.indexOf(adsOn[i]);
-        childPrice.innerText = template.extra[duration][adsOnPriceIndex];
+        const adsOnPrice = `${template.extra[duration][adsOnPriceIndex]}`;
+        childPrice.innerText = `+${adsOnPrice}`;
+        childPrice.classList.add("add-ons-price");
+        childPrice.classList.add("page-4-price");
         this.$.adsOnDiv.appendChild(childPrice);
+
+        totalPrice += Number(adsOnPrice.match(/\d+/)[0]);
+      }
+
+      if (duration == "Year") {
+        this.$.totalTitile.textContent = "Total (per year)";
+        this.$.totalPrice.textContent = `$${totalPrice}/yr`;
+      } else {
+        this.$.totalTitile.textContent = "Total (per month)";
+        this.$.totalPrice.textContent = `$${totalPrice}/yr`;
       }
     }
   }
