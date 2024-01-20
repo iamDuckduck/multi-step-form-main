@@ -4,10 +4,11 @@ const initialState = {
   user_info: [],
 };
 
-export default class Store {
+export default class Store extends EventTarget {
   #state = initialState;
 
   constructor(template) {
+    super();
     this.template = template;
   }
 
@@ -16,15 +17,16 @@ export default class Store {
     return this.#getState().steps;
   }
 
-  // getter method ( change current duration before return ) //
+  // getter current duration
   get Duration() {
+    return this.#getState().Duration;
+  }
+
+  changeDuration() {
     const state = this.#getState();
     const stateClone = structuredClone(state);
-
     stateClone.Duration = stateClone.Duration == "Month" ? "Year" : "Month";
     this.#saveState(stateClone);
-
-    return this.#getState().Duration;
   }
 
   // get user_info only at page 4
@@ -35,32 +37,26 @@ export default class Store {
         Plan: this.#getState().user_info[1].Plan,
         adsOn: this.#getState().user_info[2],
       };
+    } else if (this.#getState().steps == 2) {
+      return this.#getState().Duration;
     }
     return;
   }
 
   // add 1 and get the page //
-  get nextPage() {
+  nextPage() {
     const state = this.#getState();
-
     const stateClone = structuredClone(state);
     stateClone.steps++;
-
     this.#saveState(stateClone);
-
-    return this.#getState().steps;
   }
 
   // minus 1 and get the page //
-  get backPage() {
+  backPage() {
     const state = this.#getState();
-
     const stateClone = structuredClone(state);
     stateClone.steps--;
-
     this.#saveState(stateClone);
-
-    return this.#getState().steps;
   }
 
   // change state when form is filled and vaild //
@@ -75,7 +71,6 @@ export default class Store {
     }
 
     this.#saveState(stateClone);
-    console.log(stateClone);
   }
 
   // common method for saving and getting state //
@@ -96,6 +91,7 @@ export default class Store {
     }
 
     this.#state = newState;
+    this.dispatchEvent(new Event("statechange"));
   }
 
   #getState() {

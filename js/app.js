@@ -17,12 +17,15 @@ const price_template = {
 // MVC pattern
 function init() {
   // create instance of view and store
-  const view = new View();
+  const view = new View(price_template);
   const store = new Store(price_template);
+
+  store.addEventListener("statechange", () => {
+    view.renderPage(store.page, store.user_info);
+  });
 
   // bind next step button
   view.bindNextButton((event) => {
-    console.log(store.page);
     // if not vaild not process to other page
     if (view.showVaild(store.page) != true) {
       return;
@@ -31,19 +34,16 @@ function init() {
     store.formFilled(view.getPageInfo(store.page));
 
     // process to next page
-    const currentPage = store.nextPage;
-    view.renderStep(currentPage);
-    view.renderPage(currentPage, store.user_info, store.template);
+    store.nextPage();
   });
 
   view.bindBackButton((event) => {
-    const currentPage = store.backPage;
-    view.renderStep(currentPage);
-    view.renderPage(currentPage);
+    store.backPage();
   });
 
   view.bindPlanChoiceSwitch((event) => {
-    view.renderPrice(store.template, store.Duration);
+    store.changeDuration();
+    view.togglePrice(store.user_info);
   });
 }
 

@@ -2,7 +2,9 @@ export default class View {
   $ = {};
   $$ = {};
 
-  constructor() {
+  constructor(template) {
+    this.template = template;
+
     // ----- select esstential element -----//
     this.$.PlanChoiceSwitch = this.#qs(".toggle-wrapper #switch");
     this.$.monthText = this.#qs(".month");
@@ -77,8 +79,9 @@ export default class View {
   //-----utility methods (DOM Helper) to have some methods to change the UI-----
 
   // render the slide bar view
-  renderStep(nextPage) {
+  #renderStep(nextPage) {
     if (nextPage == 5) return;
+
     this.$$.stepNumberList.forEach((element) => {
       element.classList.remove("step-color");
     });
@@ -88,7 +91,9 @@ export default class View {
   }
 
   // render the page view
-  renderPage(page, user_info, template) {
+  renderPage(page, user_info) {
+    this.#renderStep(page);
+
     this.$$.pageList.forEach((page) => {
       page.classList.add("hidden");
     });
@@ -97,47 +102,49 @@ export default class View {
     pageEl.classList.remove("hidden");
 
     if (page == 4) {
-      const duration = user_info.Duration;
-      const plan = user_info.Plan;
-      const adsOn = user_info.adsOn;
+      this.#totalPrice(user_info);
+    }
+  }
 
-      const priceIndex = template.plan_price.Name.indexOf(plan);
-      const planPrice = template.plan_price[duration][priceIndex];
+  #totalPrice(user_info) {
+    const { Duration, Plan, adsOn } = user_info;
 
-      this.$.planChoice.textContent = `${plan} (${duration})`;
-      this.$.planPrice.textContent = `${planPrice}`;
+    const priceIndex = this.template.plan_price.Name.indexOf(Plan);
+    const planPrice = this.template.plan_price[Duration][priceIndex];
 
-      let totalPrice = Number(planPrice.match(/\d+/)[0]);
-      this.$.adsOnDiv.innerHTML = "";
-      for (let i = 0; i < adsOn.length; i++) {
-        const childName = document.createElement("p");
-        const childPrice = document.createElement("p");
-        childName.innerText = `${adsOn[i]}`;
-        childName.classList.add("add-ons-name");
-        this.$.adsOnDiv.appendChild(childName);
+    this.$.planChoice.textContent = `${Plan} (${Duration})`;
+    this.$.planPrice.textContent = `${planPrice}`;
 
-        const adsOnPriceIndex = template.extra.Name.indexOf(adsOn[i]);
-        const adsOnPrice = `${template.extra[duration][adsOnPriceIndex]}`;
-        childPrice.innerText = `+${adsOnPrice}`;
-        childPrice.classList.add("add-ons-price");
-        childPrice.classList.add("page-4-price");
-        this.$.adsOnDiv.appendChild(childPrice);
+    let totalPrice = Number(planPrice.match(/\d+/)[0]);
+    this.$.adsOnDiv.innerHTML = "";
+    for (let i = 0; i < adsOn.length; i++) {
+      const childName = document.createElement("p");
+      const childPrice = document.createElement("p");
+      childName.innerText = `${adsOn[i]}`;
+      childName.classList.add("add-ons-name");
+      this.$.adsOnDiv.appendChild(childName);
 
-        totalPrice += Number(adsOnPrice.match(/\d+/)[0]);
-      }
+      const adsOnPriceIndex = this.template.extra.Name.indexOf(adsOn[i]);
+      const adsOnPrice = `${this.template.extra[Duration][adsOnPriceIndex]}`;
+      childPrice.innerText = `+${adsOnPrice}`;
+      childPrice.classList.add("add-ons-price");
+      childPrice.classList.add("page-4-price");
+      this.$.adsOnDiv.appendChild(childPrice);
 
-      if (duration == "Year") {
-        this.$.totalTitile.textContent = "Total (per year)";
-        this.$.totalPrice.textContent = `$${totalPrice}/yr`;
-      } else {
-        this.$.totalTitile.textContent = "Total (per month)";
-        this.$.totalPrice.textContent = `$${totalPrice}/yr`;
-      }
+      totalPrice += Number(adsOnPrice.match(/\d+/)[0]);
+    }
+
+    if (Duration == "Year") {
+      this.$.totalTitile.textContent = "Total (per year)";
+      this.$.totalPrice.textContent = `$${totalPrice}/yr`;
+    } else {
+      this.$.totalTitile.textContent = "Total (per month)";
+      this.$.totalPrice.textContent = `$${totalPrice}/yr`;
     }
   }
 
   // render the price
-  renderPrice(template, Duration) {
+  togglePrice(Duration) {
     // for clicked logic
     this.$.monthText.classList.toggle("selected");
     this.$.monthText.classList.toggle("not-selected");
@@ -151,11 +158,11 @@ export default class View {
 
     // change every price
     this.$$.page2_Price.forEach((priceEl, index) => {
-      priceEl.textContent = template.plan_price[Duration][index];
+      priceEl.textContent = this.template.plan_price[Duration][index];
     });
 
     this.$$.page3_Price.forEach((priceEl, index) => {
-      priceEl.textContent = template.extra[Duration][index];
+      priceEl.textContent = this.template.extra[Duration][index];
     });
   }
 
