@@ -49,6 +49,7 @@ export default class Store extends EventTarget {
     const stateClone = structuredClone(state);
     stateClone.steps++;
     this.#saveState(stateClone);
+    console.log(this.#getState());
   }
 
   // minus 1 and get the page //
