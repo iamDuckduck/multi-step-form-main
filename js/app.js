@@ -1,3 +1,4 @@
+//.
 import View from "./view.js";
 import Store from "./store.js";
 
